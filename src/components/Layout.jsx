@@ -3,26 +3,30 @@ import { NavLink, Outlet } from 'react-router-dom';
 const Layout = () => {
    return (
       <div className="app-container">
-         <nav className="navbar">
-            <div className="logo">GestiónAcadémica</div>
-            <div className="nav-links">
+         <aside className="sidebar">
+            <div className="logo">
+               Académica
+            </div>
+            <nav className="nav-links">
                <NavLink to="/" className="nav-link" end>
                   Inicio
                </NavLink>
                <NavLink to="/lista" className="nav-link">
-                  Lista de Alumnos
+                  Alumnos
                </NavLink>
                <NavLink to="/report" className="nav-link">
                   Reporte
                </NavLink>
+            </nav>
+
+            <div style={{ marginTop: 'auto', fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>
+               v1.2.0 Beta
             </div>
-         </nav>
+         </aside>
+
          <main className="main-content">
             <Outlet />
          </main>
-         <footer style={{ textAlign: "center", padding: "2rem", color: "var(--text-muted)", fontSize: "0.875rem" }}>
-            &copy; {new Date().getFullYear()} Sistema de Gestión Académica. Todos los derechos reservados.
-         </footer>
       </div>
    );
 };

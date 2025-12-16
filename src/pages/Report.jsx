@@ -22,27 +22,25 @@ const Report = () => {
       cssClassNames: {
          tableCell: 'google-chart-cell',
          headerCell: 'google-chart-header',
+         tableRow: 'google-chart-row'
       }
    };
 
    return (
-      <div className="animate-fade-in" style={{ height: '100%', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
-         <h1>Reporte de Notas</h1>
-         <p style={{ marginBottom: '2rem', color: 'var(--text-muted)' }}>
-            Vista general del rendimiento académico de todos los estudiantes registrados.
-         </p>
+      <div className="animate-fade-in" style={{ height: 'calc(100vh - 200px)', minHeight: '500px', display: 'flex', flexDirection: 'column' }}>
+         <div style={{ marginBottom: '2rem' }}>
+            <h1 style={{ marginBottom: '0.5rem' }}>Reporte General</h1>
+            <p className="text-muted">Desempeño académico de la promoción actual.</p>
+         </div>
 
-         <div className="card chart-container" style={{ flex: 1, padding: '0', overflow: 'hidden' }}>
-            {/* We wrap the chart in a div with explicit dimensions to ensure it renders */}
-            <div style={{ width: '100%', height: '100%', minHeight: '400px' }}>
-               <Chart
-                  chartType="Table"
-                  width="100%"
-                  height="100%"
-                  data={chartData}
-                  options={options}
-               />
-            </div>
+         <div className="chart-container" style={{ flex: 1 }}>
+            <Chart
+               chartType="Table"
+               width="100%"
+               height="100%"
+               data={chartData}
+               options={options}
+            />
          </div>
       </div>
    );

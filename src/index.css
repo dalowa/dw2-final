@@ -1,23 +1,38 @@
 :root {
-  --primary-color: #6366f1;
-  /* Indigo 500 */
-  --primary-hover: #4f46e5;
-  /* Indigo 600 */
-  --secondary-color: #ec4899;
-  /* Pink 500 */
-  --background-color: #f8fafc;
+  /* New Palette: Modern Teal & Slate */
+  --primary: #0d9488;
+  /* Teal 600 */
+  --primary-dark: #0f766e;
+  /* Teal 700 */
+  --secondary: #f59e0b;
+  /* Amber 500 */
+  --background: #f8fafc;
   /* Slate 50 */
-  --card-bg: #ffffff;
-  --text-main: #1e293b;
+  --surface: #ffffff;
+  /* White */
+  --sidebar-bg: #1e293b;
   /* Slate 800 */
+  --sidebar-text: #e2e8f0;
+  /* Slate 200 */
+  --text-main: #334155;
+  /* Slate 700 */
   --text-muted: #64748b;
   /* Slate 500 */
-  --border-color: #e2e8f0;
+  --border: #e2e8f0;
   /* Slate 200 */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Status Colors */
+  --success-bg: #d1fae5;
+  --success-text: #065f46;
+  --error-bg: #fee2e2;
+  --error-text: #991b1b;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --radius: 1rem;
+
+  --font-family: 'Outfit', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -28,9 +43,9 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--background-color);
+  background-color: var(--background);
   color: var(--text-main);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,111 +54,108 @@ a {
   color: inherit;
 }
 
-button {
-  font-family: inherit;
-}
-
-/* Layout Container */
+/* Layout - Sidebar Structure */
 .app-container {
   display: flex;
-  flex-direction: column;
+  /* Sidebar layout */
   min-height: 100vh;
 }
 
-/* Navigation */
-.navbar {
-  background-color: var(--card-bg);
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 2rem;
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: var(--shadow-sm);
+  flex-direction: column;
+  padding: 2rem;
   position: sticky;
   top: 0;
-  z-index: 10;
+  height: 100vh;
+  flex-shrink: 0;
 }
 
 .logo {
-  font-weight: 800;
   font-size: 1.5rem;
-  color: var(--primary-color);
-  letter-spacing: -0.05em;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .nav-link {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--sidebar-text);
   font-weight: 500;
-  color: var(--text-muted);
-  transition: color 0.2s ease, transform 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.nav-link:hover,
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
 .nav-link.active {
-  color: var(--primary-color);
-  transform: translateY(-1px);
+  background-color: var(--primary);
+  color: white;
 }
 
-.nav-link.active {
-  font-weight: 600;
-}
-
-/* Main Content */
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 3rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
-  animation: fadeIn 0.5s ease-out;
+  overflow-y: auto;
 }
 
-/* Cards & Containers */
+/* Components */
 .card {
-  background: var(--card-bg);
-  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 2rem;
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-color);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
 }
 
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
-  outline: none;
+  font-size: 0.95rem;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  background-color: var(--primary);
   color: white;
-  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 2px 4px rgba(13, 148, 136, 0.2);
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px -1px rgba(99, 102, 241, 0.5);
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: white;
-  border: 1px solid var(--border-color);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   color: var(--text-main);
 }
 
@@ -156,54 +168,34 @@ button {
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
 }
 
-/* Headings */
+/* Typography */
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  color: #111827;
+  margin-bottom: 2rem;
   letter-spacing: -0.025em;
-  color: var(--text-main);
+  line-height: 1.1;
 }
 
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-main);
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.text-muted {
+  color: var(--text-muted);
 }
 
 /* Utilities */
-.text-center {
-  text-align: center;
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.grid-center {
-  display: grid;
-  place-items: center;
-}
-
-.gap-4 {
-  gap: 1rem;
-}
-
-/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -216,14 +208,11 @@ h2 {
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-/* Report Table Customization */
+/* Chart */
 .chart-container {
-  overflow-x: auto;
-  border-radius: 12px;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 1rem;
 }
